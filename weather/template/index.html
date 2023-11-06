@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+    <link rel="icon" href="cloudy.ico" type="icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400&family=Montserrat:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-around;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="search">
+        <form action="/" method="post">
+          {% csrf_token %}
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Search your city..."
+            id="cityname"
+            name="cityname"
+          />
+          <button>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              height="1.5em"
+              width="1.5em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+                ></path>
+              </svg>
+          </button>
+        </form>
+      </div>
+      <div class="weather">
+        <div class="city">Weather in City:-</div>
+        <div class="coordinates">
+          <p class="long">{{location.name}},{{location.region}}</span></p>
+        </div>
+        <div class="weather-icon">
+          
+              <img src=" {{current.condition.icon}} " alt="you failled nacho" class="icon" />
+           
+             
+
+          
+        </div>
+        
+        
+        <div class="main">
+          <h6>
+           {{current.condition.text}}
+          </h6>
+          <p class="temp">  {{current.temp_c}}°C                  
+             </p>
+        </div>
+        <div class="description">Description</div>
+        <div class="othertemp">
+          <p class="feelslike">
+            feel like:{{current.feelslike_c}} °C |<span class="maxtemp">| Precepitation: {{current.precip_mm}} mm |</span
+            ><span class="mintemp">| Cloud: {{current.cloud}} </span>
+          </p>
+        </div>
+        <div class="alts">
+          <p class="pressure">
+            Pressure: {{current.pressure_in}} | <span class="humidity"> | Humidity: {{current.humidity}}  </span
+            ><br><span class="wind">  Wind speed: {{current.wind_kph}}- km/h</span>
+            <br> 
+          </p>
+
+        </div>
+
+        <div class="container" style="background-color: aliceblue;">
+          <a class="btn btn-light" href="/forecast">See Forecast</a>
+          <a class="btn btn-light" href="/subscribe">Subscribe us</a>
+        </div>
+        
+
+      </div>
+    </div>
+    
+  </body>
+</html>

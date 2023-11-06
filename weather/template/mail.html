@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>just mail sending page</title>
+</head>
+<body>
+    <script>
+        // Define the time when you want to refresh the page (e.g., 2:00 PM)
+        const refreshTime = "11:00:00";  // 24-hour format (HH:mm:ss)
+
+        // Get the current date and time
+        const currentTime = new Date();
+
+        // Calculate the time remaining until the specified refresh time
+        const timeRemaining = new Date(currentTime.toDateString() + " " + refreshTime) - currentTime;
+
+        if (timeRemaining > 0) {
+            // Schedule the page reload
+            setTimeout(function () {
+                location.reload();
+            }, timeRemaining);
+        }
+    </script>
+</body>
+</html>
